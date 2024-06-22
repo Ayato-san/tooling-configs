@@ -11,6 +11,9 @@
     "ts-config",
     "config"
   ],
+  "exports": {
+    "./prettier": "./build/prettier/index.json"
+  },
   "files": [
     "build/eslint",
     "build/prettier",
@@ -35,6 +38,7 @@
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
+  "prettier": "./public/prettier/index.json",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

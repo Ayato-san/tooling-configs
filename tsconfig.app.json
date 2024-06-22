@@ -1,9 +1,9 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "declaration": false,
-    "sourceMap": true,
     "emitDecoratorMetadata": true,
-    "types": ["@types/node"]
+    "types": ["@types/node"],
+    "declaration": false,
+    "sourceMap": true
   }
 }

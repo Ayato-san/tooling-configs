@@ -14,7 +14,30 @@
 npm i -D @ayato-san/tooling-configs
 ```
 
+### Eslint
+
+```js
+// eslint.config.js
+import { configure } from '@ayato-san/tooling-configs/eslint'
+
+export default await configure()
+// Your config here
+```
+
+> You don't need `.eslintignore` as it has been provided by the preset.
+
 ### Add script for package.json
+
+For example:
+
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
+}
+```
 
 ### Prettier
 
@@ -26,11 +49,11 @@ npm i -D @ayato-san/tooling-configs
 
 ### Tsconfig
 
-for node development
+for node (ESM) development
 
 ```json
 {
-  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.node"
+  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.app"
 }
 ```
 
@@ -39,5 +62,13 @@ for browser client development
 ```json
 {
   "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.browser"
+}
+```
+
+for package development
+
+```json
+{
+  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.package"
 }
 ```

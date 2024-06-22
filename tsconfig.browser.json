@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "moduleResolution": "Bundler",
     "lib": ["DOM", "ESNext", "DOM.Iterable", "ES2020"],
+    "moduleResolution": "Bundler",
     "types": ["vite/client"]
   }
 }

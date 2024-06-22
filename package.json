@@ -14,6 +14,7 @@
   ],
   "exports": {
     "./eslint": {
+      "types": "./build/eslint/index.d.ts",
       "import": "./build/eslint/index.js",
       "require": "./build/eslint/index.cjs"
     },
@@ -23,27 +24,46 @@
     "./tsconfig.package": "./tsconfig.package.json"
   },
   "files": [
-    "build/eslint",
-    "build/prettier",
     "./tsconfig.app.json",
-    "./tsconfig.browser.json",
     "./tsconfig.base.json",
-    "./tsconfig.package.json"
+    "./tsconfig.browser.json",
+    "./tsconfig.package.json",
+    "build/eslint",
+    "build/prettier"
   ],
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
+    "prebuild": "npm run format && npm run lint:fix",
     "build": "tsup",
     "postbuild": "rm -r ./build/deleted && find ./build -name '*.cts' -type f -delete",
     "prepublishOnly": "npm run build",
     "release": "npx release-it"
   },
+  "dependencies": {
+    "@adonisjs/eslint-plugin": "^1.3.0",
+    "@eslint/eslintrc": "^3.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "eslint-config-flat-gitignore": "^0.1.5",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-i": "^2.29.1",
+    "eslint-plugin-jsdoc": "^48.2.12",
+    "eslint-plugin-jsonc": "^2.16.0",
+    "eslint-plugin-n": "^17.9.0",
+    "eslint-plugin-perfectionist": "^2.11.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-tailwindcss": "^3.17.3",
+    "jsonc-eslint-parser": "^2.4.0",
+    "local-pkg": "^0.5.0"
+  },
   "devDependencies": {
     "@types/eslint": "^8.56.10",
+    "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^20.14.2",
-    "eslint": "^9.5.0",
+    "eslint": "^8.56.0",
     "prettier": "^3.3.2",
     "release-it": "^17.3.0",
     "tsup": "^8.1.0",

@@ -8,7 +8,8 @@
   "keywords": [
     "eslint-config",
     "prettier-config",
-    "ts-config",
+    "tsconfig",
+    "typescript",
     "config"
   ],
   "exports": {
@@ -17,13 +18,17 @@
       "require": "./build/eslint/index.cjs"
     },
     "./prettier": "./build/prettier/index.json",
-    "./tsconfig/tsconfig.browser": "./build/tsconfig/tsconfig.browser.json",
-    "./tsconfig/tsconfig.node": "./build/tsconfig/tsconfig.node.json"
+    "./tsconfig.app": "./tsconfig.app.json",
+    "./tsconfig.browser": "./tsconfig.browser.json",
+    "./tsconfig.package": "./tsconfig.package.json"
   },
   "files": [
     "build/eslint",
     "build/prettier",
-    "build/tsconfig"
+    "./tsconfig.app.json",
+    "./tsconfig.browser.json",
+    "./tsconfig.base.json",
+    "./tsconfig.package.json"
   ],
   "scripts": {
     "lint": "eslint .",

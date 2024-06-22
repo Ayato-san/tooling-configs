@@ -12,6 +12,10 @@
     "config"
   ],
   "exports": {
+    "./eslint": {
+      "import": "./build/eslint/index.js",
+      "require": "./build/eslint/index.cjs"
+    },
     "./prettier": "./build/prettier/index.json",
     "./tsconfig/*": "./build/tsconfig/*.json"
   },

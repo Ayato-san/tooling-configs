@@ -17,7 +17,8 @@
       "require": "./build/eslint/index.cjs"
     },
     "./prettier": "./build/prettier/index.json",
-    "./tsconfig/*": "./build/tsconfig/*.json"
+    "./tsconfig/tsconfig.browser": "./build/tsconfig/tsconfig.browser.json",
+    "./tsconfig/tsconfig.node": "./build/tsconfig/tsconfig.node.json"
   },
   "files": [
     "build/eslint",

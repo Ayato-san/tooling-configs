@@ -30,7 +30,7 @@ for node development
 
 ```json
 {
-  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.node.json"
+  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.node"
 }
 ```
 
@@ -38,6 +38,6 @@ for browser client development
 
 ```json
 {
-  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.browser.json"
+  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.browser"
 }
 ```

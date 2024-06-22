@@ -1,0 +1,52 @@
+{
+  "name": "@ayato-san/tooling-configs",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "My custom tooling settings",
+  "author": "Ayato-san <ayatosan.pro@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "eslint-config",
+    "prettier-config",
+    "ts-config",
+    "config"
+  ],
+  "files": [
+    "build/eslint",
+    "build/prettier",
+    "build/tsconfig"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "build": "tsup",
+    "postbuild": "rm -r ./build/deleted && find ./build -name '*.cts' -type f -delete",
+    "prepublishOnly": "npm run build",
+    "release": "npx release-it"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.14.2",
+    "eslint": "^9.5.0",
+    "prettier": "^3.3.2",
+    "release-it": "^17.3.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): ${version}",
+      "tagAnnotation": "release ${version}"
+    },
+    "github": {
+      "release": true,
+      "web": true
+    }
+  }
+}

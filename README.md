@@ -73,7 +73,7 @@ for node (ESM) development
 
 ```json
 {
-  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.app"
+  "extends": "@ayato-san/tooling-configs/tsconfig.app"
 }
 ```
 
@@ -81,7 +81,7 @@ for browser client development
 
 ```json
 {
-  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.browser"
+  "extends": "@ayato-san/tooling-configs/tsconfig.browser"
 }
 ```
 
@@ -89,6 +89,6 @@ for package development
 
 ```json
 {
-  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.package"
+  "extends": "@ayato-san/tooling-configs/tsconfig.package"
 }
 ```

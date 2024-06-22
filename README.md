@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/Ayato-san/tooling-configs/assets/71392060/7b7b294a-46d7-450e-afb4-49b4ae94a4b1">
+  <img src="https://github.com/Ayato-san/tooling-configs/assets/71392060/f549dfc0-a6d9-48d2-a808-36a61f9f836e">
+
 </p>
 
 ## Features

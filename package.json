@@ -12,7 +12,8 @@
     "config"
   ],
   "exports": {
-    "./prettier": "./build/prettier/index.json"
+    "./prettier": "./build/prettier/index.json",
+    "./tsconfig/*": "./build/tsconfig/*.json"
   },
   "files": [
     "build/eslint",

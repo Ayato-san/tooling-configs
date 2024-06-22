@@ -1,20 +1,20 @@
 import { existsSync } from 'fs'
 
-import { node } from './configs/node.js'
-import { jsdoc } from './configs/jsdoc.js'
-import { jsonc } from './configs/jsonc.js'
+import { adonisjs } from './configs/adonisjs.js'
 import { ignores } from './configs/ignores.js'
 import { imports } from './configs/imports.js'
-import { adonisjs } from './configs/adonisjs.js'
-import { prettier } from './configs/prettier.js'
 import { javascript } from './configs/javascript.js'
-import { typescript } from './configs/typescript.js'
-import { combine, interopDefault } from './utils.js'
-import { tailwindcss } from './configs/tailwindcss.js'
+import { jsdoc } from './configs/jsdoc.js'
+import { jsonc } from './configs/jsonc.js'
+import { node } from './configs/node.js'
 import { perfectionist } from './configs/perfectionist.js'
+import { prettier } from './configs/prettier.js'
 import { sortPackageJson, sortTsconfig } from './configs/sort.js'
+import { tailwindcss } from './configs/tailwindcss.js'
+import { typescript } from './configs/typescript.js'
 import { hasAdonisjs, hasTailwind, hasTypeScript } from './env.js'
 import type { Awaitable, Options, UserConfigItem } from './types.js'
+import { combine, interopDefault } from './utils.js'
 
 async function configure(
   options?: Options,
@@ -61,18 +61,18 @@ async function configure(
 export {
   adonisjs,
   combine,
+  configure,
   ignores,
   imports,
   interopDefault,
   javascript,
   jsdoc,
   jsonc,
-  configure,
   node,
   perfectionist,
   prettier,
   sortPackageJson,
   sortTsconfig,
-  typescript,
   tailwindcss,
+  typescript,
 }

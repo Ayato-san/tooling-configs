@@ -1,10 +1,10 @@
-import { interopDefault, toArray } from '../utils.js'
 import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs.js'
 import type {
   ConfigItem,
   OptionsTypeScriptParserOptions,
   OptionsTypeScriptWithTypes,
 } from '../types.js'
+import { interopDefault, toArray } from '../utils.js'
 
 export async function typescript(
   options?: OptionsTypeScriptWithTypes &

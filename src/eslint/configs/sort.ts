@@ -202,4 +202,4 @@ async function sortTsconfig() {
   ]
 }
 
-export { sortTsconfig, sortPackageJson }
+export { sortPackageJson, sortTsconfig }

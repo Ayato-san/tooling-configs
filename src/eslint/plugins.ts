@@ -1,5 +1,5 @@
-import default2 from 'eslint-plugin-n'
 // @ts-expect-error missing types
 import * as pluginImport from 'eslint-plugin-i'
+import default2 from 'eslint-plugin-n'
 
-export { pluginImport, default2 }
+export { default2, pluginImport }

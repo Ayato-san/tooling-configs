@@ -4,4 +4,4 @@ const hasTypeScript = isPackageExists('typescript')
 const hasTailwind = isPackageExists('tailwindcss') || isPackageExists('@tailwindcss/typography')
 const hasAdonisjs = isPackageExists('@adonisjs/core')
 
-export { hasAdonisjs, hasTypeScript, hasTailwind }
+export { hasAdonisjs, hasTailwind, hasTypeScript }

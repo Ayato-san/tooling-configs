@@ -1,5 +1,5 @@
-import { interopDefault } from '../utils.js'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs.js'
+import { interopDefault } from '../utils.js'
 
 export async function jsonc() {
   const [pluginJsonc, parserJsonc] = await Promise.all([

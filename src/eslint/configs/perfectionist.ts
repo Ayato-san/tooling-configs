@@ -11,7 +11,7 @@ export async function perfectionist() {
         'perfectionist/sort-imports': [
           'error',
           {
-            'type': 'line-length',
+            'type': 'natural',
             'order': 'asc',
             'internal-pattern': ['@/**', '#*/**'],
             'groups': [
@@ -36,7 +36,9 @@ export async function perfectionist() {
             ],
           },
         ],
-        'perfectionist/sort-enums': ['error', { type: 'line-length', order: 'asc' }],
+        'perfectionist/sort-enums': ['error', { type: 'natural', order: 'asc' }],
+        'perfectionist/sort-named-exports': ['error', { type: 'natural', order: 'asc' }],
+        'perfectionist/sort-exports': ['error', { type: 'natural', order: 'asc' }],
       },
     },
   ]

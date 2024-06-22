@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint'
 import type { ParserOptions } from '@typescript-eslint/parser'
+import type { Linter } from 'eslint'
 // import type { FlatESLintConfigItem } from '@antfu/eslint-define-config'
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
 

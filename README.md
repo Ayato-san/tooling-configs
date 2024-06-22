@@ -7,6 +7,15 @@
 - Designed to work with Prettier, Typescript, JSX, Node, AdonisJS out of the box
 - Lint json files ( TSConfig, package.json )
 - Super easy to use ( one line of code )
+- [ESLint flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new)
+- Use .gitignore as ignore file
+
+## Usage
+
+> [!IMPORTANT]
+>
+> - This config is using the new [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new)
+> - New/updated rules will not be considered as breaking changes. Only API changes will be considered as breaking changes.
 
 ### Install
 
@@ -17,11 +26,21 @@ npm i -D @ayato-san/tooling-configs
 ### Eslint
 
 ```js
-// eslint.config.js
+// eslint.config.js esm
 import { configure } from '@ayato-san/tooling-configs/eslint'
 
-export default await configure()
-// Your config here
+export default await configure({
+  // Your config here
+})
+```
+
+```js
+// eslint.config.js commonjs
+const { configure } = require('@ayato-san/tooling-configs/eslint')
+
+module.exports = configure({
+  // Your config here
+})
 ```
 
 > You don't need `.eslintignore` as it has been provided by the preset.

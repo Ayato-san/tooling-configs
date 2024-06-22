@@ -23,3 +23,21 @@ npm i -D @ayato-san/tooling-configs
   "prettier": "@ayato-san/tooling-configs/prettier"
 }
 ```
+
+### Tsconfig
+
+for node development
+
+```json
+{
+  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.node.json"
+}
+```
+
+for browser client development
+
+```json
+{
+  "extends": "@ayato-san/tooling-configs/tsconfig/tsconfig.browser.json"
+}
+```

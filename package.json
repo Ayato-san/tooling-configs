@@ -1,7 +1,7 @@
 {
   "name": "@ayato-san/tooling-configs",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "My custom tooling settings",
   "author": "Ayato-san <ayatosan.pro@gmail.com>",
   "license": "MIT",

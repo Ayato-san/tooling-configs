@@ -5,6 +5,14 @@
   "description": "My custom tooling settings",
   "author": "Ayato-san <ayatosan.pro@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/Ayato-san/tooling-configs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayato-san/tooling-configs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ayato-san/tooling-configs/issues"
+  },
   "keywords": [
     "eslint-config",
     "prettier-config",

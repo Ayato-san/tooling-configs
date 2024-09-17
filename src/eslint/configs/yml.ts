@@ -12,6 +12,7 @@ config.name = 'YAML' // Setting the name of the config
 config.files = GLOB_YML // Specifying the files to which this config applies
 config.rules = {
   ...config.rules,
+  'yml/no-empty-mapping-value': 'off', // Disable the rule for empty mapping values
   'yml/no-multiple-empty-lines': 2, // Enforce a maximum of one empty line between content
 }
 

@@ -59,7 +59,6 @@ baseConfig.rules = {
     { selector: 'class', format: ['PascalCase'] },
     { selector: 'interface', format: ['PascalCase'], custom: { regex: '^I[A-Z]', match: false } },
   ],
-  '@typescript-eslint/no-unsafe-assignment': 'warn', // warn unsafe assignments
   // Off rules
   '@typescript-eslint/consistent-type-definitions': 'off', // Disable consistent type definitions rule
   '@typescript-eslint/consistent-indexed-object-style': 'off', // Disable consistent indexed object style rule
@@ -79,6 +78,7 @@ baseConfig.rules = {
   '@typescript-eslint/no-unsafe-return': 'off', // Disable no-unsafe-return rule
   '@typescript-eslint/unbound-method': 'off', // Allow unbound methods
   '@typescript-eslint/no-unused-expressions': 'off', // Allow unused expressions
+  '@typescript-eslint/no-unsafe-assignment': 'off', // Allow unsafe assignments
   // Type-aware rules
   'dot-notation': 'off', // Disable dot-notation rule
   'no-implied-eval': 'off', // Disable no-implied-eval rule

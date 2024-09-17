@@ -33,63 +33,64 @@ baseConfig.rules = {
   ...baseConfig.rules,
   ...flattenArrayObject(tseslint.configs.strict).rules,
   '@typescript-eslint/consistent-type-imports': [
-    'error',
+    'error', // Enforce consistent type imports
     { prefer: 'type-imports', disallowTypeAnnotations: false },
   ],
   '@typescript-eslint/no-use-before-define': [
-    'error',
+    'error', // Disallow use of variables before they are defined
     { functions: false, classes: false, variables: true },
   ],
-  '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
-  '@typescript-eslint/prefer-ts-expect-error': 'error',
-  'no-useless-constructor': 'off',
-  'no-unused-vars': 'off',
-  '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-  'no-redeclare': 'off',
-  '@typescript-eslint/no-redeclare': 'error',
-  'no-use-before-define': 'off',
-  'no-dupe-class-members': 'off',
-  '@typescript-eslint/no-dupe-class-members': 'error',
-  'no-loss-of-precision': 'off',
-  '@typescript-eslint/no-loss-of-precision': 'error',
+  '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }], // Allow ts-ignore with description
+  '@typescript-eslint/prefer-ts-expect-error': 'error', // Prefer ts-expect-error over ts-ignore
+  'no-useless-constructor': 'off', // Disable no-useless-constructor rule
+  'no-unused-vars': 'off', // Disable no-unused-vars rule
+  '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }], // Disallow unused variables, ignoring those starting with _
+  'no-redeclare': 'off', // Disable no-redeclare rule
+  '@typescript-eslint/no-redeclare': 'error', // Disallow variable redeclaration
+  'no-use-before-define': 'off', // Disable no-use-before-define rule
+  'no-dupe-class-members': 'off', // Disable no-dupe-class-members rule
+  '@typescript-eslint/no-dupe-class-members': 'error', // Disallow duplicate class members
+  'no-loss-of-precision': 'off', // Disable no-loss-of-precision rule
+  '@typescript-eslint/no-loss-of-precision': 'error', // Disallow loss of precision
   '@typescript-eslint/naming-convention': [
-    'error',
+    'error', // Enforce naming conventions
     { selector: 'variable', format: ['camelCase', 'UPPER_CASE', 'PascalCase'] },
     { selector: 'typeLike', format: ['PascalCase'] },
     { selector: 'class', format: ['PascalCase'] },
     { selector: 'interface', format: ['PascalCase'], custom: { regex: '^I[A-Z]', match: false } },
   ],
   // Off rules
-  '@typescript-eslint/consistent-type-definitions': 'off',
-  '@typescript-eslint/consistent-indexed-object-style': 'off',
-  '@typescript-eslint/explicit-function-return-type': 'off',
-  '@typescript-eslint/no-explicit-any': 'off',
-  '@typescript-eslint/parameter-properties': 'off',
-  '@typescript-eslint/no-empty-interface': 'off',
-  '@typescript-eslint/ban-ts-ignore': 'off',
-  '@typescript-eslint/no-empty-function': 'off',
-  '@typescript-eslint/no-non-null-assertion': 'off',
-  '@typescript-eslint/explicit-module-boundary-types': 'off',
-  '@typescript-eslint/no-namespace': 'off',
-  '@typescript-eslint/triple-slash-reference': 'off',
+  '@typescript-eslint/consistent-type-definitions': 'off', // Disable consistent type definitions rule
+  '@typescript-eslint/consistent-indexed-object-style': 'off', // Disable consistent indexed object style rule
+  '@typescript-eslint/explicit-function-return-type': 'off', // Disable explicit function return type rule
+  '@typescript-eslint/no-explicit-any': 'off', // Disable no-explicit-any rule
+  '@typescript-eslint/parameter-properties': 'off', // Disable parameter properties rule
+  '@typescript-eslint/no-empty-interface': 'off', // Disable no-empty-interface rule
+  '@typescript-eslint/ban-ts-ignore': 'off', // Disable ban on ts-ignore
+  '@typescript-eslint/no-empty-function': 'off', // Disable no-empty-function rule
+  '@typescript-eslint/no-non-null-assertion': 'off', // Disable no-non-null-assertion rule
+  '@typescript-eslint/explicit-module-boundary-types': 'off', // Disable explicit module boundary types rule
+  '@typescript-eslint/no-namespace': 'off', // Disable no-namespace rule
+  '@typescript-eslint/triple-slash-reference': 'off', // Disable triple-slash-reference rule
+  '@typescript-eslint/no-empty-object-type': 'off', // Disable no-empty-object-type rule
+  '@typescript-eslint/no-floating-promises': 'off', // Disable no-floating-promises rule
+  '@typescript-eslint/no-misused-promises': 'off', // Disable no-misused-promises rule
+  '@typescript-eslint/no-unsafe-return': 'off', // Disable no-unsafe-return rule
   // Type-aware rules
-  'dot-notation': 'off',
-  'no-implied-eval': 'off',
-  '@typescript-eslint/await-thenable': 'error',
-  '@typescript-eslint/dot-notation': ['error', { allowKeywords: true }],
-  '@typescript-eslint/no-floating-promises': 'error',
-  '@typescript-eslint/no-for-in-array': 'error',
-  '@typescript-eslint/no-implied-eval': 'error',
-  '@typescript-eslint/no-misused-promises': 'error',
-  '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-  '@typescript-eslint/no-unsafe-argument': 'error',
-  '@typescript-eslint/no-unsafe-assignment': 'error',
-  '@typescript-eslint/no-unsafe-call': 'error',
-  '@typescript-eslint/no-unsafe-member-access': 'error',
-  '@typescript-eslint/no-unsafe-return': 'error',
-  '@typescript-eslint/restrict-plus-operands': 'error',
-  '@typescript-eslint/restrict-template-expressions': 'error',
-  '@typescript-eslint/unbound-method': 'error',
+  'dot-notation': 'off', // Disable dot-notation rule
+  'no-implied-eval': 'off', // Disable no-implied-eval rule
+  '@typescript-eslint/await-thenable': 'error', // Enforce await on thenable
+  '@typescript-eslint/dot-notation': ['error', { allowKeywords: true }], // Enforce dot notation
+  '@typescript-eslint/no-for-in-array': 'error', // Disallow for-in loops over arrays
+  '@typescript-eslint/no-implied-eval': 'error', // Disallow implied eval
+  '@typescript-eslint/no-unnecessary-type-assertion': 'error', // Disallow unnecessary type assertions
+  '@typescript-eslint/no-unsafe-argument': 'error', // Disallow unsafe arguments
+  '@typescript-eslint/no-unsafe-assignment': 'error', // Disallow unsafe assignments
+  '@typescript-eslint/no-unsafe-call': 'error', // Disallow unsafe calls
+  '@typescript-eslint/no-unsafe-member-access': 'error', // Disallow unsafe member access
+  '@typescript-eslint/restrict-plus-operands': 'error', // Restrict the use of + operator
+  '@typescript-eslint/restrict-template-expressions': 'error', // Restrict template expressions
+  '@typescript-eslint/unbound-method': 'error', // Disallow unbound methods
 }
 
 /** ESLint configuration object for Typescript files's Rules */

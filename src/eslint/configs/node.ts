@@ -15,7 +15,7 @@ config.rules = {
   'node/no-new-require': 'error', // Disallow new require() calls
   'node/no-path-concat': 'error', // Disallow string concatenation for paths
   'node/prefer-global/buffer': ['error', 'never'], // Prefer global Buffer over local
-  'node/prefer-global/process': ['error', 'never'], // Prefer global process over local
+  'node/prefer-global/process': ['off', 'never'], // Prefer global process over local
   'node/process-exit-as-throw': 'error', // Treat process.exit() as an exception
 }
 

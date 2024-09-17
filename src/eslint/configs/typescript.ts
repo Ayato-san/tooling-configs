@@ -59,6 +59,7 @@ baseConfig.rules = {
     { selector: 'class', format: ['PascalCase'] },
     { selector: 'interface', format: ['PascalCase'], custom: { regex: '^I[A-Z]', match: false } },
   ],
+  '@typescript-eslint/no-unsafe-assignment': 'warn', // warn unsafe assignments
   // Off rules
   '@typescript-eslint/consistent-type-definitions': 'off', // Disable consistent type definitions rule
   '@typescript-eslint/consistent-indexed-object-style': 'off', // Disable consistent indexed object style rule
@@ -76,6 +77,8 @@ baseConfig.rules = {
   '@typescript-eslint/no-floating-promises': 'off', // Disable no-floating-promises rule
   '@typescript-eslint/no-misused-promises': 'off', // Disable no-misused-promises rule
   '@typescript-eslint/no-unsafe-return': 'off', // Disable no-unsafe-return rule
+  '@typescript-eslint/unbound-method': 'off', // Allow unbound methods
+  '@typescript-eslint/no-unused-expressions': 'off', // Allow unused expressions
   // Type-aware rules
   'dot-notation': 'off', // Disable dot-notation rule
   'no-implied-eval': 'off', // Disable no-implied-eval rule
@@ -85,12 +88,10 @@ baseConfig.rules = {
   '@typescript-eslint/no-implied-eval': 'error', // Disallow implied eval
   '@typescript-eslint/no-unnecessary-type-assertion': 'error', // Disallow unnecessary type assertions
   '@typescript-eslint/no-unsafe-argument': 'error', // Disallow unsafe arguments
-  '@typescript-eslint/no-unsafe-assignment': 'error', // Disallow unsafe assignments
   '@typescript-eslint/no-unsafe-call': 'error', // Disallow unsafe calls
   '@typescript-eslint/no-unsafe-member-access': 'error', // Disallow unsafe member access
   '@typescript-eslint/restrict-plus-operands': 'error', // Restrict the use of + operator
   '@typescript-eslint/restrict-template-expressions': 'error', // Restrict template expressions
-  '@typescript-eslint/unbound-method': 'error', // Disallow unbound methods
 }
 
 /** ESLint configuration object for Typescript files's Rules */

@@ -53,6 +53,7 @@ export async function typescript(
         parserOptions: {
           extraFileExtensions: enableForVue ? ['.vue'] : [],
           sourceType: 'module',
+          warnOnUnsupportedTypeScriptVersion: false,
           ...(tsconfigPath
             ? {
                 project: tsconfigPath,

@@ -61,9 +61,19 @@ For example:
 
 ### Prettier
 
+use the default config
+
 ```json
 {
-  "prettier": "@ayato-san/tooling-configs/prettier"
+  "prettier": "@ayato-san/tooling-configs/prettier/default"
+}
+```
+
+use the config with the plugin edgejs
+
+```json
+{
+  "prettier": "@ayato-san/tooling-configs/prettier/edgejs"
 }
 ```
 

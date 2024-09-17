@@ -26,7 +26,7 @@
       "import": "./build/eslint/index.js",
       "require": "./build/eslint/index.cjs"
     },
-    "./prettier": "./build/prettier/index.json",
+    "./prettier/*": "./build/prettier/*.json",
     "./tsconfig.app": "./tsconfig.app.json",
     "./tsconfig.browser": "./tsconfig.browser.json",
     "./tsconfig.package": "./tsconfig.package.json"
@@ -45,14 +45,16 @@
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "prebuild": "npm run format && npm run lint:fix",
-    "build": "tsup",
+    "generate": "node ./src/prettier/generation.js",
+    "build": "tsup && npm run generate",
     "postbuild": "rm -r ./build/deleted && find ./build -name '*.cts' -type f -delete",
     "prepublishOnly": "npm run build",
     "release": "npx release-it"
   },
   "peerDependencies": {
     "eslint": "^8.57.0",
-    "prettier": "^3.3.2"
+    "prettier": "^3.3.2",
+    "prettier-edgejs": "^0.2.30"
   },
   "dependencies": {
     "@adonisjs/eslint-plugin": "^1.3.0",
@@ -82,7 +84,7 @@
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
   },
-  "prettier": "./public/prettier/index.json",
+  "prettier": "./build/prettier/default.json",
   "publishConfig": {
     "access": "public",
     "tag": "latest"

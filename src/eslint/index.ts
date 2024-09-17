@@ -1,78 +1,61 @@
-import { existsSync } from 'fs'
+import { writeFileSync } from 'fs'
+import { getPackageInfoSync } from 'local-pkg'
+import tseslint, { type ConfigWithExtends } from 'typescript-eslint'
 
-import { adonisjs } from './configs/adonisjs.js'
-import { ignores } from './configs/ignores.js'
-import { imports } from './configs/imports.js'
-import { javascript } from './configs/javascript.js'
-import { jsdoc } from './configs/jsdoc.js'
-import { jsonc } from './configs/jsonc.js'
-import { node } from './configs/node.js'
-import { perfectionist } from './configs/perfectionist.js'
-import { prettier } from './configs/prettier.js'
-import { sortPackageJson, sortTsconfig } from './configs/sort.js'
-import { tailwindcss } from './configs/tailwindcss.js'
-import { typescript } from './configs/typescript.js'
-import { hasAdonisjs, hasTailwind, hasTypeScript } from './env.js'
-import type { Awaitable, Options, UserConfigItem } from './types.js'
-import { combine, interopDefault } from './utils.js'
+import configAdonis from './configs/adonis.js'
+import configIgnore from './configs/ignore.js'
+import configJavascript from './configs/javascript.js'
+import configJsDoc from './configs/jsdoc.js'
+import configJson from './configs/json.js'
+import configNode from './configs/node.js'
+import configPerfectionist from './configs/perfectionist.js'
+import configPrettier from './configs/prettier.js'
+import configTailwind from './configs/tailwindcss.js'
+import configTypescript from './configs/typescript.js'
+import configUnicorn from './configs/unicorn.js'
+import configYml from './configs/yml.js'
+import { hasAdonisjs, hasPrettier, hasTailwind, hasTypeScript } from './lib/env.js'
 
-async function configure(
-  options?: Options,
-  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
-): Promise<UserConfigItem[]> {
-  const enableGitIgnore = options?.enableGitIgnore || true
-  const enableAdonisJs = options?.adonisjs || hasAdonisjs
-  const enableJsonc = options?.jsonc || true
-  const enablePrettier = options?.prettier || true
-  const enableTypescript = options?.typescript || hasTypeScript
-  const enableTailwind = options?.tailwindcss || hasTailwind
-  const configs = []
-  if (enableGitIgnore) {
-    const plugin = await interopDefault(import('eslint-config-flat-gitignore'))
-    if (typeof enableGitIgnore !== 'boolean') {
-      configs.push(plugin(enableGitIgnore))
-    } else if (existsSync('.gitignore')) {
-      configs.push(plugin())
-    }
+/**
+ * Configures ESLint with the provided configurations and available plugins.
+ * @param {ConfigWithExtends[]} configs - An array of configuration objects to be included in the ESLint setup.
+ * @returns The final ESLint configuration object after merging all provided configurations.
+ */
+export function configure(...configs: ConfigWithExtends[]) {
+  if (hasPrettier) {
+    configs.unshift(configPrettier)
   }
-  configs.push(ignores(), javascript(), perfectionist(), imports(), jsdoc(), node())
-  if (enableTypescript) {
-    configs.push(
-      typescript({
-        ...(typeof enableTypescript !== 'boolean' ? enableTypescript : {}),
-      })
-    )
+  if (hasTypeScript) {
+    configs.unshift(...configTypescript)
   }
-  if (enableTailwind) {
-    configs.push(tailwindcss())
+  if (hasAdonisjs) {
+    configs.unshift(configAdonis)
   }
-  if (enableJsonc) {
-    configs.push(jsonc(), sortPackageJson(), sortTsconfig())
+  if (hasTailwind) {
+    configs.unshift(configTailwind)
   }
-  if (enableAdonisJs) {
-    configs.push(adonisjs())
-  }
-  if (enablePrettier) {
-    configs.push(prettier())
-  }
-  const resolved = await Promise.all(configs)
-  return combine(...resolved, ...userConfigs)
+
+  return tseslint.config(
+    configIgnore,
+    configUnicorn,
+    configJavascript,
+    configJsDoc,
+    ...configJson,
+    configYml,
+    configNode,
+    configPerfectionist,
+    ...configs
+  )
 }
-export {
-  adonisjs,
-  combine,
-  configure,
-  ignores,
-  imports,
-  interopDefault,
-  javascript,
-  jsdoc,
-  jsonc,
-  node,
-  perfectionist,
-  prettier,
-  sortPackageJson,
-  sortTsconfig,
-  tailwindcss,
-  typescript,
+
+/**
+ * Writes the ESLint configuration to a specified file in JSON format.
+ * @param filePath - The path where the ESLint configuration will be saved. Defaults to '.eslintrc.json'.
+ * @param params - The configuration parameters to be passed to the configure function, allowing for dynamic configuration.
+ */
+export function writeFile(
+  filePath: string = '.eslintrc.json',
+  ...params: Parameters<typeof configure>
+) {
+  writeFileSync(filePath, JSON.stringify(configure(...params), null, 2))
 }

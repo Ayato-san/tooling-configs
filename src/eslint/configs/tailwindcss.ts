@@ -1,19 +1,11 @@
-import { GLOB_EXCLUDE } from '../globs.js'
-import { interopDefault } from '../utils.js'
+import tailwindPlugin from 'eslint-plugin-tailwindcss'
 
-export async function tailwindcss() {
-  // @ts-expect-error missing types
-  const tailwindPlugin = await interopDefault(import('eslint-plugin-tailwindcss'))
-  return [
-    {
-      name: 'ayato-san:tailwindcss',
-      ignores: GLOB_EXCLUDE,
-      plugins: {
-        tailwindcss: tailwindPlugin,
-      },
-      rules: {
-        ...tailwindPlugin.configs.recommended.rules,
-      },
-    },
-  ]
-}
+import flattenArrayObject from '../lib/flatten-array-object.js'
+import removeCircularDeps from '../lib/remove-circular-deps.js'
+
+/** ESLint configuration object for Node's Rules */
+const config = flattenArrayObject(tailwindPlugin.configs['flat/recommended']) // Load recommended ESLint rules for Node
+removeCircularDeps(config, 'tailwindcss') // Remove circular dependencies from the config
+config.name = 'Tailwind' // Set the name of the configuration
+
+export default config

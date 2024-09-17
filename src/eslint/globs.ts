@@ -1,9 +1,7 @@
 const GLOB_SRC = '**/*.?([cm])[jt]s?(x)'
-const GLOB_TS = '**/*.?([cm])ts'
-const GLOB_TSX = '**/*.?([cm])tsx'
-const GLOB_JSON = '**/*.json'
-const GLOB_JSON5 = '**/*.json5'
-const GLOB_JSONC = '**/*.jsonc'
+const GLOB_TS = ['**/*.?([cm])ts', '**/*.?([cm])tsx']
+const GLOB_JSON = ['*.json', '**/*.json', '*.json5', '**/*.json5', '*.jsonc', '**/*.jsonc']
+const GLOB_YML = ['*.yaml', '**/*.yaml', '*.yml', '**/*.yml']
 const GLOB_NODE_MODULES = '**/node_modules'
 const GLOB_LOCKFILE = ['**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml', '**/bun.lockb']
 const GLOB_EXCLUDE = [
@@ -34,14 +32,4 @@ const GLOB_EXCLUDE = [
   '**/components.d.ts',
 ]
 
-export {
-  GLOB_EXCLUDE,
-  GLOB_JSON,
-  GLOB_JSON5,
-  GLOB_JSONC,
-  GLOB_LOCKFILE,
-  GLOB_NODE_MODULES,
-  GLOB_SRC,
-  GLOB_TS,
-  GLOB_TSX,
-}
+export { GLOB_EXCLUDE, GLOB_JSON, GLOB_LOCKFILE, GLOB_NODE_MODULES, GLOB_SRC, GLOB_TS, GLOB_YML }

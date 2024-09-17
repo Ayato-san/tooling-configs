@@ -1,45 +1,40 @@
-import { interopDefault } from '../utils.js'
+import perfectionistPlugin from 'eslint-plugin-perfectionist'
+import type { ConfigWithExtends } from 'typescript-eslint'
 
-export async function perfectionist() {
-  // @ts-expect-error missing types
-  const pluginPerfectionist = await interopDefault(import('eslint-plugin-perfectionist'))
-  return [
-    {
-      name: 'ayato-san:perfectionist',
-      plugins: { perfectionist: pluginPerfectionist },
-      rules: {
-        'perfectionist/sort-imports': [
-          'error',
-          {
-            'type': 'natural',
-            'order': 'asc',
-            'internal-pattern': ['@/**', '#*/**'],
-            'groups': [
-              // Import 'foo.js' or import 'foo.css'
-              ['side-effect', 'side-effect-style'],
-              // Packages and node
-              ['builtin', 'external', 'builtin-type', 'external-type'],
-              // Others
-              [
-                'internal-type',
-                'internal',
-                'parent-type',
-                'sibling-type',
-                'index-type',
-                'parent',
-                'sibling',
-                'index',
-                'style',
-                'object',
-                'unknown',
-              ],
-            ],
-          },
+/** ESLint configuration object for Perfectionist's Rules */
+const config: ConfigWithExtends = {
+  name: 'Perfectionist', // Name of the ESLint configuration
+  plugins: { perfectionist: perfectionistPlugin }, // Registering the perfectionist plugin
+  rules: {
+    'perfectionist/sort-imports': [
+      'error',
+      {
+        type: 'natural', // Sorting type
+        order: 'asc', // Ascending order
+        internalPattern: ['@/**', '#*/**'], // Patterns for internal imports
+        groups: [
+          ['side-effect', 'side-effect-style'], // Side-effect imports
+          ['builtin', 'external', 'builtin-type', 'external-type'], // Built-in and external packages
+          [
+            'internal-type',
+            'internal',
+            'parent-type',
+            'sibling-type',
+            'index-type',
+            'parent',
+            'sibling',
+            'index',
+            'style',
+            'object',
+            'unknown',
+          ],
         ],
-        'perfectionist/sort-enums': ['error', { type: 'natural', order: 'asc' }],
-        'perfectionist/sort-named-exports': ['error', { type: 'natural', order: 'asc' }],
-        'perfectionist/sort-exports': ['error', { type: 'natural', order: 'asc' }],
       },
-    },
-  ]
+    ],
+    'perfectionist/sort-enums': ['error', { type: 'natural', order: 'asc' }], // Rule for sorting enums
+    'perfectionist/sort-named-exports': ['error', { type: 'natural', order: 'asc' }], // Rule for sorting named exports
+    'perfectionist/sort-exports': ['error', { type: 'natural', order: 'asc' }], // Rule for sorting exports
+  },
 }
+
+export default config

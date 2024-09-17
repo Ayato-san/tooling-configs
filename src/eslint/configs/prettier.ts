@@ -1,22 +1,16 @@
-import { interopDefault } from '../utils.js'
+import prettierConfig from 'eslint-config-prettier'
+import prettierPlugin from 'eslint-plugin-prettier/recommended'
+import type { ConfigWithExtends } from 'typescript-eslint'
 
-export async function prettier() {
-  const [eslintConfigPrettier, eslintPluginPrettier] = await Promise.all([
-    interopDefault(import('eslint-config-prettier')),
-    interopDefault(import('eslint-plugin-prettier')),
-  ])
-  return [
-    {
-      name: 'ayato-san:prettier',
-      plugins: {
-        prettier: eslintPluginPrettier,
-      },
-      rules: {
-        ...eslintConfigPrettier.rules,
-        // @ts-expect-error wrong types
-        ...eslintPluginPrettier.configs['recommended'].rules,
-        'prettier/prettier': 'warn',
-      },
-    },
-  ]
+/** ESLint configuration object for Prettier's Rules */
+const config: ConfigWithExtends = {
+  name: 'Prettier', // Name of the configuration
+  plugins: { ...prettierPlugin.plugins }, // Include plugins from eslint-plugin-prettier
+  rules: {
+    ...prettierConfig.rules, // Use rules from eslint-config-prettier
+    ...prettierPlugin.rules, // Use recommended rules from eslint-plugin-prettier
+    'prettier/prettier': 'warn', // Set Prettier rule to warn
+  },
 }
+
+export default config

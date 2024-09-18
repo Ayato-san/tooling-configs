@@ -44,7 +44,18 @@ baseConfig.rules = {
   '@typescript-eslint/prefer-ts-expect-error': 'error', // Prefer ts-expect-error over ts-ignore
   'no-useless-constructor': 'off', // Disable no-useless-constructor rule
   'no-unused-vars': 'off', // Disable no-unused-vars rule
-  '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }], // Disallow unused variables, ignoring those starting with _
+  '@typescript-eslint/no-unused-vars': [
+    'error',
+    {
+      args: 'all',
+      argsIgnorePattern: '^_',
+      caughtErrors: 'all',
+      caughtErrorsIgnorePattern: '^_',
+      destructuredArrayIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+      ignoreRestSiblings: true,
+    },
+  ], // Disallow unused variables, ignoring those starting with _
   'no-redeclare': 'off', // Disable no-redeclare rule
   '@typescript-eslint/no-redeclare': 'error', // Disallow variable redeclaration
   'no-use-before-define': 'off', // Disable no-use-before-define rule
@@ -79,6 +90,8 @@ baseConfig.rules = {
   '@typescript-eslint/unbound-method': 'off', // Allow unbound methods
   '@typescript-eslint/no-unused-expressions': 'off', // Allow unused expressions
   '@typescript-eslint/no-unsafe-assignment': 'off', // Allow unsafe assignments
+  '@typescript-eslint/no-unsafe-argument': 'off', // Allow unsafe arguments
+  '@typescript-eslint/no-unsafe-member-access': 'off', // Allow unsafe member access
   // Type-aware rules
   'dot-notation': 'off', // Disable dot-notation rule
   'no-implied-eval': 'off', // Disable no-implied-eval rule
@@ -87,9 +100,7 @@ baseConfig.rules = {
   '@typescript-eslint/no-for-in-array': 'error', // Disallow for-in loops over arrays
   '@typescript-eslint/no-implied-eval': 'error', // Disallow implied eval
   '@typescript-eslint/no-unnecessary-type-assertion': 'error', // Disallow unnecessary type assertions
-  '@typescript-eslint/no-unsafe-argument': 'error', // Disallow unsafe arguments
   '@typescript-eslint/no-unsafe-call': 'error', // Disallow unsafe calls
-  '@typescript-eslint/no-unsafe-member-access': 'error', // Disallow unsafe member access
   '@typescript-eslint/restrict-plus-operands': 'error', // Restrict the use of + operator
   '@typescript-eslint/restrict-template-expressions': 'error', // Restrict template expressions
 }

@@ -15,6 +15,7 @@ import configTypescript from './configs/typescript.js'
 import configUnicorn from './configs/unicorn.js'
 import configYml from './configs/yml.js'
 import { hasAdonisjs, hasPrettier, hasTailwind, hasTypeScript } from './lib/env.js'
+import { isTsOptions, type TsOptions } from './types.js'
 
 /**
  * Configures ESLint with the provided configurations and available plugins.
@@ -40,7 +41,11 @@ export function configure(options?: Options, ...configs: ConfigWithExtends[]) {
   }
   // Check if TypeScript support should be enabled and add its config if so
   if (verifyOptions(options, 'enableTypescript', hasTypeScript)) {
-    configs.unshift(...configTypescript)
+    if (isTsOptions(options?.enableTypescript)) {
+      configs.unshift(...configTypescript(options.enableTypescript))
+    } else {
+      configs.unshift(...configTypescript())
+    }
   }
   // Check if Adonis support should be enabled and add its config if so
   if (verifyOptions(options, 'enableAdonis', hasAdonisjs)) {
@@ -100,7 +105,7 @@ interface Options {
   /** Indicates whether YAML should be enabled */
   enableYaml?: boolean
   /** Indicates whether TypeScript support should be enabled */
-  enableTypescript?: boolean
+  enableTypescript?: boolean | TsOptions
   /** Indicates whether Adonis.js support should be enabled */
   enableAdonis?: boolean
   /** Indicates whether Tailwind CSS support should be enabled */

@@ -5,6 +5,7 @@ import { GLOB_TS } from '../globs.js'
 import { hasVue } from '../lib/env.js'
 import flattenArrayObject from '../lib/flatten-array-object.js'
 import removeCircularDeps from '../lib/remove-circular-deps.js'
+import type { TsOptions } from '../types.js'
 
 /** ESLint configuration object for Typescript's Rules */
 const baseConfig = flattenArrayObject(tseslint.configs.recommended)
@@ -84,25 +85,7 @@ baseConfig.rules = {
   '@typescript-eslint/no-namespace': 'off', // Disable no-namespace rule
   '@typescript-eslint/triple-slash-reference': 'off', // Disable triple-slash-reference rule
   '@typescript-eslint/no-empty-object-type': 'off', // Disable no-empty-object-type rule
-  '@typescript-eslint/no-floating-promises': 'off', // Disable no-floating-promises rule
-  '@typescript-eslint/no-misused-promises': 'off', // Disable no-misused-promises rule
-  '@typescript-eslint/no-unsafe-return': 'off', // Disable no-unsafe-return rule
-  '@typescript-eslint/unbound-method': 'off', // Allow unbound methods
   '@typescript-eslint/no-unused-expressions': 'off', // Allow unused expressions
-  '@typescript-eslint/no-unsafe-assignment': 'off', // Allow unsafe assignments
-  '@typescript-eslint/no-unsafe-argument': 'off', // Allow unsafe arguments
-  '@typescript-eslint/no-unsafe-member-access': 'off', // Allow unsafe member access
-  // Type-aware rules
-  'dot-notation': 'off', // Disable dot-notation rule
-  'no-implied-eval': 'off', // Disable no-implied-eval rule
-  '@typescript-eslint/await-thenable': 'error', // Enforce await on thenable
-  '@typescript-eslint/dot-notation': ['error', { allowKeywords: true }], // Enforce dot notation
-  '@typescript-eslint/no-for-in-array': 'error', // Disallow for-in loops over arrays
-  '@typescript-eslint/no-implied-eval': 'error', // Disallow implied eval
-  '@typescript-eslint/no-unnecessary-type-assertion': 'error', // Disallow unnecessary type assertions
-  '@typescript-eslint/no-unsafe-call': 'error', // Disallow unsafe calls
-  '@typescript-eslint/restrict-plus-operands': 'error', // Restrict the use of + operator
-  '@typescript-eslint/restrict-template-expressions': 'error', // Restrict template expressions
 }
 
 /** ESLint configuration object for Typescript files's Rules */
@@ -124,4 +107,30 @@ const configTests: ConfigWithExtends = {
   },
 }
 
-export default [baseConfig, configFile, configTests]
+export default function generate(options?: TsOptions) {
+  if (options?.typeAwareRules) {
+    baseConfig.rules = {
+      ...baseConfig.rules,
+      'dot-notation': 'off', // Disable dot-notation rule to allow property access using dot notation
+      'no-implied-eval': 'off', // Disable no-implied-eval rule to allow implied eval in code
+      'no-throw-literal': 'off', // Disable no-throw-literal rule to allow throwing literals
+      '@typescript-eslint/await-thenable': 'error', // Enforce await on thenable to ensure proper async handling
+      '@typescript-eslint/dot-notation': ['error', { allowKeywords: true }], // Enforce dot notation for property access, allowing keywords
+      '@typescript-eslint/no-floating-promises': 'error', // Disallow floating promises to avoid unhandled promise rejections
+      '@typescript-eslint/no-for-in-array': 'error', // Disallow for-in loops over arrays to prevent unexpected behavior
+      '@typescript-eslint/no-implied-eval': 'error', // Disallow implied eval to enhance security
+      '@typescript-eslint/no-misused-promises': 'error', // Disallow misused promises to ensure correct promise usage
+      '@typescript-eslint/no-throw-literal': 'error', // Disallow throwing literals to enforce throwing Error objects
+      '@typescript-eslint/no-unnecessary-type-assertion': 'error', // Disallow unnecessary type assertions to improve type safety
+      '@typescript-eslint/no-unsafe-argument': 'error', // Disallow unsafe calls to prevent runtime errors
+      '@typescript-eslint/no-unsafe-assignment': 'error', // Disallow unsafe assignments to maintain type integrity
+      '@typescript-eslint/no-unsafe-call': 'error', // Disallow unsafe calls to ensure type safety
+      '@typescript-eslint/no-unsafe-member-access': 'error', // Disallow unsafe member access to prevent runtime errors
+      '@typescript-eslint/no-unsafe-return': 'error', // Disallow unsafe return values to maintain type safety
+      '@typescript-eslint/restrict-plus-operands': 'error', // Restrict the use of + operator to ensure correct operand types
+      '@typescript-eslint/restrict-template-expressions': 'error', // Restrict template expressions to ensure type safety
+      '@typescript-eslint/unbound-method': 'error', // Disallow unbound methods to prevent context loss
+    }
+  }
+  return [baseConfig, configFile, configTests]
+}

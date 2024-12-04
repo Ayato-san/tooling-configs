@@ -1,7 +1,14 @@
-<p align="center">
+<div align="center">
   <img src="https://github.com/Ayato-san/tooling-configs/assets/71392060/f549dfc0-a6d9-48d2-a808-36a61f9f836e">
-
-</p>
+  <h1>Tooling Configs</h1>
+  <p>My custom tooling settings</p>
+  <div>
+    <a href="https://github.com/Ayato-san/tooling-configs/blob/main/LICENSE.md"><img alt="GitHub License" src="https://img.shields.io/github/license/Ayato-san/tooling-configs?style=for-the-badge"></a>
+    <a href="#"><img alt="NPM Version" src="https://img.shields.io/github/package-json/version/Ayato-san/tooling-configs?style=for-the-badge"></a>
+    <a href="https://github.com/Ayato-san/tooling-configs/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/Ayato-san/tooling-configs?style=for-the-badge"></a>
+    <a href="#"><img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/Ayato-san/tooling-configs?style=for-the-badge"></a>
+  </div>
+</div>
 
 ## Features
 
@@ -18,11 +25,22 @@
 > - This config is using the new [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new)
 > - New/updated rules will not be considered as breaking changes. Only API changes will be considered as breaking changes.
 
-### Install
+### Installation
 
-```bash
-npm i -D @ayato-san/tooling-configs
-```
+- with npm
+  ```sh
+  npm install -D @ayato-san/tooling-configs
+  ```
+
+- with pnpm
+  ```sh
+  pnpm install -D @ayato-san/tooling-configs
+  ```
+
+- with yarn
+  ```sh
+  yarn add -D @ayato-san/tooling-configs
+  ```
 
 ### Eslint
 

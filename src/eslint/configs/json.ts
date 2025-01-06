@@ -3,8 +3,8 @@ import jsoncPlugin from 'eslint-plugin-jsonc'
 import type { ConfigWithExtends } from 'typescript-eslint'
 
 import { GLOB_JSON } from '../globs.js'
-import flattenArrayObject from '../lib/flatten-array-object.js'
-import removeCircularDeps from '../lib/remove-circular-deps.js'
+import flattenArrayObject from '../lib/flatten_array_object.js'
+import removeCircularDeps from '../lib/remove_circular_deps.js'
 
 /** ESLint configuration object for Json's Rules */
 const config: Linter.Config = flattenArrayObject(jsoncPlugin.configs['flat/recommended-with-jsonc'])

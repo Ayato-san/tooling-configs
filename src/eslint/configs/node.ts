@@ -1,7 +1,7 @@
 import nodePlugin from 'eslint-plugin-n'
 
-import removeCircularDeps from '../lib/remove-circular-deps.js'
-import renamePlugin from '../lib/rename-plugin.js'
+import removeCircularDeps from '../lib/remove_circular_deps.js'
+import renamePlugin from '../lib/rename_plugin.js'
 
 /** ESLint configuration object for Node's Rules */
 const config = nodePlugin.configs['flat/recommended'] // Load recommended ESLint rules for Node

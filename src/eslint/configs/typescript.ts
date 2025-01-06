@@ -3,8 +3,8 @@ import tseslint, { type ConfigWithExtends } from 'typescript-eslint'
 
 import { GLOB_TS } from '../globs.js'
 import { hasVue } from '../lib/env.js'
-import flattenArrayObject from '../lib/flatten-array-object.js'
-import removeCircularDeps from '../lib/remove-circular-deps.js'
+import flattenArrayObject from '../lib/flatten_array_object.js'
+import removeCircularDeps from '../lib/remove_circular_deps.js'
 import type { TsOptions } from '../types.js'
 
 /** ESLint configuration object for Typescript's Rules */
@@ -66,7 +66,11 @@ baseConfig.rules = {
   '@typescript-eslint/no-loss-of-precision': 'error', // Disallow loss of precision
   '@typescript-eslint/naming-convention': [
     'error', // Enforce naming conventions
-    { selector: 'variable', format: ['camelCase', 'UPPER_CASE', 'PascalCase'] },
+    {
+      selector: 'variable',
+      format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+      filter: { regex: '^_', match: false },
+    },
     { selector: 'typeLike', format: ['PascalCase'] },
     { selector: 'class', format: ['PascalCase'] },
     { selector: 'interface', format: ['PascalCase'], custom: { regex: '^I[A-Z]', match: false } },

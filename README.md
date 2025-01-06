@@ -28,11 +28,13 @@
 ### Installation
 
 - with npm
+
   ```sh
   npm install -D @ayato-san/tooling-configs
   ```
 
 - with pnpm
+
   ```sh
   pnpm install -D @ayato-san/tooling-configs
   ```

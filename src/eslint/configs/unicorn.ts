@@ -5,6 +5,9 @@ import { type ConfigWithExtends } from 'typescript-eslint'
 const config: ConfigWithExtends = {
   name: 'Unicorn', // Name of the configuration
   plugins: { '@unicorn': unicornPlugin },
+  rules: {
+    '@unicorn/filename-case': ['error', { case: 'snakeCase' }],
+  },
 }
 
 export default config

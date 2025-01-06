@@ -2,7 +2,7 @@ import jsdoc from 'eslint-plugin-jsdoc'
 
 import { GLOB_SRC } from '../globs.js'
 import { hasTypeScript } from '../lib/env.js'
-import removeCircularDeps from '../lib/remove-circular-deps.js'
+import removeCircularDeps from '../lib/remove_circular_deps.js'
 
 /** ESLint configuration object for Javascript Documentation's Rules */
 const config = jsdoc.configs['flat/recommended'] // Load the recommended configuration from eslint-plugin-jsdoc

@@ -1,18 +1,18 @@
 import { existsSync } from 'fs'
-import { isPackageExists } from 'local-pkg'
+import { isPackageListedSync } from 'local-pkg'
 
 /** Check if .gitignore file exists */
 const hasGitIgnore = existsSync('.gitignore')
 /** Check if Prettier package is installed */
-const hasPrettier = isPackageExists('prettier')
+const hasPrettier = isPackageListedSync('prettier')
 /** Check if TypeScript package is installed */
-const hasTypeScript = isPackageExists('typescript')
+const hasTypeScript = isPackageListedSync('typescript')
 /** Check if Tailwind CSS is installed */
-const hasTailwind = isPackageExists('tailwindcss')
+const hasTailwind = isPackageListedSync('tailwindcss')
 /** Check if AdonisJS core package is installed */
-const hasAdonisjs = isPackageExists('@adonisjs/core')
+const hasAdonisjs = isPackageListedSync('@adonisjs/core')
 /** Check if Vue package is installed */
-const hasVue = isPackageExists('vue')
+const hasVue = isPackageListedSync('vue')
 
 // Export the results of the checks
 export { hasAdonisjs, hasGitIgnore, hasPrettier, hasTailwind, hasTypeScript, hasVue }

@@ -56,8 +56,8 @@ export function configure(options?: Options, ...configs: ConfigWithExtends[]) {
     configs.unshift(configTailwind)
   }
 
-  // Log the enabled features if the eslint cli contains '--debug' arg
-  if (argv.includes('--debug')) {
+  // Log the enabled features if the eslint cli contains '--features' arg
+  if (argv.includes('--features')) {
     console.log({
       adonis: printEnabled(options, 'enableAdonis', hasAdonisjs),
       json: printEnabled(options, 'enableJson', true),

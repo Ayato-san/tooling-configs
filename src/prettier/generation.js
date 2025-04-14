@@ -34,7 +34,7 @@ if (!existsSync('./build/prettier')) {
 writeFileSync('./build/prettier/default.json', JSON.stringify(config))
 
 // Sort plugins by name
-const plugins = [{ package: 'prettier-edgejs', name: 'edgejs' }].sort(function (a, b) {
+const plugins = [{ package: 'prettier-plugin-edgejs', name: 'edgejs' }].sort(function (a, b) {
   const keyA = a.name
   const keyB = b.name
   if (keyA < keyB) return -1

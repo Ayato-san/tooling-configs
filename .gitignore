@@ -4,7 +4,6 @@ build
 # Node & Dependencies
 node_modules
 coverage
-package-lock.json
 
 # Build tools specific
 npm-debug.log

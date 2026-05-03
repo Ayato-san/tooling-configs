@@ -45,11 +45,8 @@
     "lint:debug": "eslint . --debug",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "prebuild": "npm run format && npm run lint:fix",
     "build": "tsup",
-    "postbuild": "node ./scripts/postbuild.js",
-    "prepublishOnly": "npm run build",
-    "release": "npx release-it"
+    "postbuild": "node ./scripts/postbuild.js"
   },
   "peerDependencies": {
     "eslint": "^10.3.0",
@@ -77,7 +74,6 @@
     "@types/node": "^25.6.0",
     "eslint": "^10.3.0",
     "prettier": "^3.8.3",
-    "release-it": "^20.0.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
   },
@@ -85,17 +81,5 @@
   "publishConfig": {
     "access": "public",
     "tag": "latest"
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore(release): ${version}",
-      "tagAnnotation": "v${version}",
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true,
-      "releaseName": "v${version}",
-      "web": true
-    }
   }
 }

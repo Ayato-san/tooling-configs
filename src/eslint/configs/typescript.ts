@@ -1,5 +1,6 @@
+import type { Config } from 'eslint/config'
 import { cwd } from 'node:process'
-import tseslint, { type ConfigWithExtends } from 'typescript-eslint'
+import tseslint from 'typescript-eslint'
 
 import { GLOB_TS } from '../globs.js'
 import { hasVue } from '../lib/env.js'
@@ -8,7 +9,7 @@ import removeCircularDeps from '../lib/remove_circular_deps.js'
 import type { TsOptions } from '../types.js'
 
 /** ESLint configuration object for Typescript's Rules */
-const baseConfig = flattenArrayObject(tseslint.configs.recommended)
+const baseConfig = flattenArrayObject(tseslint.configs.recommended as Config[])
 removeCircularDeps(baseConfig, '@typescript-eslint') // Remove circular dependencies
 baseConfig.name = 'Typescript' // Set the name of the config
 baseConfig.files = GLOB_TS // Specify the files to lint
@@ -32,7 +33,7 @@ if (baseConfig.languageOptions) {
 // Define ESLint rules for TypeScript
 baseConfig.rules = {
   ...baseConfig.rules,
-  ...flattenArrayObject(tseslint.configs.strict).rules,
+  ...flattenArrayObject(tseslint.configs.strict as Config[]).rules,
   '@typescript-eslint/consistent-type-imports': [
     'error', // Enforce consistent type imports
     { prefer: 'type-imports', disallowTypeAnnotations: false },
@@ -93,7 +94,7 @@ baseConfig.rules = {
 }
 
 /** ESLint configuration object for Typescript files's Rules */
-const configFile: ConfigWithExtends = {
+const configFile: Config = {
   name: 'Typescript Files', // Name of the config for TypeScript files
   files: GLOB_TS, // Specify the files to lint
   rules: {
@@ -102,7 +103,7 @@ const configFile: ConfigWithExtends = {
 }
 
 /** ESLint configuration object for Typescript tests's Rules */
-const configTests: ConfigWithExtends = {
+const configTests: Config = {
   name: 'Typescript Tests', // Name of the config for TypeScript tests
   files: ['**/*.{test,spec}.ts?(x)'], // Specify test files to lint
   rules: {

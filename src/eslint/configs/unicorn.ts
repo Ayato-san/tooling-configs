@@ -1,8 +1,8 @@
 import unicornPlugin from 'eslint-plugin-unicorn'
-import { type ConfigWithExtends } from 'typescript-eslint'
+import type { Config } from 'eslint/config'
 
 /** ESLint configuration object for Unicorn's Rules */
-const config: ConfigWithExtends = {
+const config: Config = {
   name: 'Unicorn', // Name of the configuration
   plugins: { '@unicorn': unicornPlugin },
   rules: {

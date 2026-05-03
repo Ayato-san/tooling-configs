@@ -1,6 +1,6 @@
+import { defineConfig, type Config } from 'eslint/config'
 import { writeFileSync } from 'fs'
 import { argv } from 'node:process'
-import tseslint, { type ConfigWithExtends } from 'typescript-eslint'
 
 import configAdonis from './configs/adonis.js'
 import configIgnore from './configs/ignore.js'
@@ -23,10 +23,10 @@ import { isTsOptions, type TsOptions } from './types.js'
  * based on the specified options.
  *
  * @param {Options} options - An object containing flags to enable or disable specific ESLint features.
- * @param {ConfigWithExtends[]} configs - An array of configuration objects to be included in the ESLint setup.
+ * @param {Config[]} configs - An array of configuration objects to be included in the ESLint setup.
  * @returns The final ESLint configuration object after merging all provided configurations.
  */
-export function configure(options?: Options, ...configs: ConfigWithExtends[]) {
+export function configure(options?: Options, ...configs: Config[]) {
   // Check if Prettier should be enabled and add its config if so
   if (verifyOptions(options, 'enablePrettier', hasPrettier)) {
     configs.unshift(configPrettier)
@@ -69,7 +69,7 @@ export function configure(options?: Options, ...configs: ConfigWithExtends[]) {
   }
 
   // Merge all configurations into a single ESLint configuration object
-  return tseslint.config(
+  return defineConfig(
     configIgnore,
     configUnicorn,
     configJavascript,

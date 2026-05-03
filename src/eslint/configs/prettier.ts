@@ -1,9 +1,9 @@
 import prettierConfig from 'eslint-config-prettier'
 import prettierPlugin from 'eslint-plugin-prettier/recommended'
-import type { ConfigWithExtends } from 'typescript-eslint'
+import type { Config } from 'eslint/config'
 
 /** ESLint configuration object for Prettier's Rules */
-const config: ConfigWithExtends = {
+const config: Config = {
   name: 'Prettier', // Name of the configuration
   plugins: { ...prettierPlugin.plugins }, // Include plugins from eslint-plugin-prettier
   rules: {

@@ -1,7 +1,7 @@
-import { type ConfigWithExtends } from 'typescript-eslint'
+import type { Config } from 'eslint/config'
 
 /** ESLint configuration object for Javascript's Rules */
-const config: ConfigWithExtends = {
+const config: Config = {
   name: 'Javascript', // Name of the configuration
   languageOptions: {
     sourceType: 'module', // Specifies the source type

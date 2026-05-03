@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint'
 import jsoncPlugin from 'eslint-plugin-jsonc'
-import type { ConfigWithExtends } from 'typescript-eslint'
+import type { Config } from 'eslint/config'
 
 import { GLOB_JSON } from '../globs.js'
 import flattenArrayObject from '../lib/flatten_array_object.js'
@@ -42,7 +42,7 @@ config.rules = {
 }
 
 /** ESLint configuration object for Package.json's Rules */
-const sortPackageJson: ConfigWithExtends = {
+const sortPackageJson: Config = {
   name: 'Sort package.json',
   files: ['**/package.json'], // Targeting package.json files
   rules: {
@@ -123,7 +123,7 @@ const sortPackageJson: ConfigWithExtends = {
   },
 }
 
-const sortTsConfig: ConfigWithExtends = {
+const sortTsConfig: Config = {
   name: 'Sort tsconfig.json',
   files: ['**/tsconfig.json', '**/tsconfig.*.json'], // Targeting tsconfig files
   rules: {
@@ -156,7 +156,6 @@ const sortTsConfig: ConfigWithExtends = {
           'emitDecoratorMetadata',
           'experimentalDecorators',
           /* Modules */
-          'baseUrl',
           'rootDir',
           'rootDirs',
           'customConditions',
@@ -238,4 +237,4 @@ const sortTsConfig: ConfigWithExtends = {
   },
 }
 
-export default [config, sortPackageJson, sortTsConfig] as ConfigWithExtends[]
+export default [config, sortPackageJson, sortTsConfig] as Config[]

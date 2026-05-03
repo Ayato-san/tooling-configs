@@ -1,9 +1,9 @@
-import { type ConfigWithExtends } from 'typescript-eslint'
+import type { Config } from 'eslint/config'
 
 // Importing the glob patterns to exclude from linting
 import { GLOB_EXCLUDE } from '../globs.js'
 
 /** Defining the ESLint configuration with the specified ignores */
-const ignores: ConfigWithExtends = { ignores: GLOB_EXCLUDE }
+const ignores: Config = { ignores: GLOB_EXCLUDE }
 
 export default ignores

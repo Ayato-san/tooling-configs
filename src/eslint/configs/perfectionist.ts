@@ -1,9 +1,12 @@
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
-import type { ConfigWithExtends } from 'typescript-eslint'
+import type { Config } from 'eslint/config'
+
+import { GLOB_SRC } from '../globs.js'
 
 /** ESLint configuration object for Perfectionist's Rules */
-const config: ConfigWithExtends = {
+const config: Config = {
   name: 'Perfectionist', // Name of the ESLint configuration
+  files: [GLOB_SRC],
   plugins: { perfectionist: perfectionistPlugin }, // Registering the perfectionist plugin
   rules: {
     'perfectionist/sort-imports': [
@@ -11,21 +14,20 @@ const config: ConfigWithExtends = {
       {
         type: 'natural', // Sorting type
         order: 'asc', // Ascending order
-        internalPattern: ['@/**', '#*/**'], // Patterns for internal imports
+        internalPattern: ['^@/.+', '^#.+'], // Patterns for internal imports
         groups: [
           ['side-effect', 'side-effect-style'], // Side-effect imports
-          ['builtin', 'external', 'builtin-type', 'external-type'], // Built-in and external packages
+          ['builtin', 'external', 'type-builtin', 'type-external'], // Built-in and external packages
           [
-            'internal-type',
+            'type-internal',
             'internal',
-            'parent-type',
-            'sibling-type',
-            'index-type',
+            'type-parent',
+            'type-sibling',
+            'type-index',
             'parent',
             'sibling',
             'index',
             'style',
-            'object',
             'unknown',
           ],
         ],

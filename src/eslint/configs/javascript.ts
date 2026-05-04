@@ -1,7 +1,7 @@
-import type { Config } from 'eslint/config'
+import type { Linter } from 'eslint'
 
 /** ESLint configuration object for Javascript's Rules */
-const config: Config = {
+const config: Linter.Config = {
   name: 'Javascript', // Name of the configuration
   languageOptions: {
     sourceType: 'module', // Specifies the source type

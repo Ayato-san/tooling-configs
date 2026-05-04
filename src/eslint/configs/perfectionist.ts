@@ -1,13 +1,13 @@
+import type { Linter } from 'eslint'
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
-import type { Config } from 'eslint/config'
 
 import { GLOB_SRC } from '../globs.js'
 
 /** ESLint configuration object for Perfectionist's Rules */
-const config: Config = {
+const config: Linter.Config = {
   name: 'Perfectionist', // Name of the ESLint configuration
   files: [GLOB_SRC],
-  plugins: { perfectionist: perfectionistPlugin }, // Registering the perfectionist plugin
+  plugins: { perfectionist: perfectionistPlugin as any }, // Registering the perfectionist plugin
   rules: {
     'perfectionist/sort-imports': [
       'error',

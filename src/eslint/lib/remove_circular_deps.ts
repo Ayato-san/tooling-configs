@@ -12,7 +12,9 @@ type Config = Linter.Config | TSESLint.FlatConfig.Config
  * @param config - The ESLint configuration object, which can be of type Linter.Config or TSESLint.FlatConfig.Config.
  * @param name - The name of the plugin whose circular dependencies are to be removed.
  */
-export default function removeCircularDeps(config: Config, name: string) {
+export default function removeCircularDeps(config: Config | undefined, name: string) {
+  if (!config) return
+
   // Check if the specified plugin exists in the configuration
   if (config.plugins && config.plugins[name] && 'configs' in config.plugins[name]) {
     // Clear the plugin's configs

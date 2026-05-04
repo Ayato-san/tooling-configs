@@ -1,12 +1,14 @@
+import type { Linter } from 'eslint'
 import nodePlugin from 'eslint-plugin-n'
 
 import removeCircularDeps from '../lib/remove_circular_deps.js'
 import renamePlugin from '../lib/rename_plugin.js'
 
 /** ESLint configuration object for Node's Rules */
-const config = nodePlugin.configs['flat/recommended'] // Load recommended ESLint rules for Node
+const config: Linter.Config = nodePlugin.configs['flat/recommended'] ?? {} // Load recommended ESLint rules for Node
 removeCircularDeps(config, 'n') // Remove circular dependencies from the config
 renamePlugin(config, 'n', 'node') // Rename the plugin from 'n' to 'node'
+config.plugins = { ...config.plugins, node: nodePlugin } // Register the plugin on this config object for node/* rules
 config.name = 'Node' // Set the name of the configuration
 config.rules = {
   'node/handle-callback-err': ['error', '^(err|error)$'], // Enforce error handling in callbacks

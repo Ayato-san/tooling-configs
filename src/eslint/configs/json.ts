@@ -1,18 +1,20 @@
 import type { Linter } from 'eslint'
 import jsoncPlugin from 'eslint-plugin-jsonc'
-import type { Config } from 'eslint/config'
 
 import { GLOB_JSON } from '../globs.js'
-import flattenArrayObject from '../lib/flatten_array_object.js'
 import removeCircularDeps from '../lib/remove_circular_deps.js'
 
-/** ESLint configuration object for Json's Rules */
-const config: Linter.Config = flattenArrayObject(jsoncPlugin.configs['flat/recommended-with-jsonc'])
-removeCircularDeps(config, 'jsonc') // Remove circular dependencies from the config
+const jsonBaseConfigs: Linter.Config[] = (jsoncPlugin.configs['flat/recommended-with-jsonc'] ?? []) as Linter.Config[]
+for (const config of jsonBaseConfigs) {
+  removeCircularDeps(config, 'jsonc') // Remove circular dependencies from the config
+}
 
-config.name = 'JSON' // Set the name of the config
-config.files = GLOB_JSON // Specify the files this config applies to
-config.rules = {
+/** ESLint configuration object for Json's Rules */
+const config: Linter.Config = {
+  name: 'JSON',
+  files: GLOB_JSON, // Specify the files this config applies to
+  plugins: { jsonc: jsoncPlugin },
+  rules: {
   'jsonc/no-bigint-literals': 'error', // Disallow BigInt literals
   'jsonc/no-binary-expression': 'error', // Disallow binary expressions
   'jsonc/no-binary-numeric-literals': 'error', // Disallow binary numeric literals
@@ -40,11 +42,13 @@ config.rules = {
   'jsonc/valid-json-number': 'error', // Ensure valid JSON numbers
   'jsonc/vue-custom-block/no-parsing-error': 'error', // Disallow parsing errors in Vue custom blocks
 }
+}
 
 /** ESLint configuration object for Package.json's Rules */
-const sortPackageJson: Config = {
+const sortPackageJson: Linter.Config = {
   name: 'Sort package.json',
   files: ['**/package.json'], // Targeting package.json files
+  plugins: { jsonc: jsoncPlugin },
   rules: {
     'jsonc/sort-array-values': [
       'error',
@@ -123,9 +127,10 @@ const sortPackageJson: Config = {
   },
 }
 
-const sortTsConfig: Config = {
+const sortTsConfig: Linter.Config = {
   name: 'Sort tsconfig.json',
   files: ['**/tsconfig.json', '**/tsconfig.*.json'], // Targeting tsconfig files
+  plugins: { jsonc: jsoncPlugin },
   rules: {
     'jsonc/sort-keys': [
       'error',
@@ -237,4 +242,4 @@ const sortTsConfig: Config = {
   },
 }
 
-export default [config, sortPackageJson, sortTsConfig] as Config[]
+export default [...jsonBaseConfigs, config, sortPackageJson, sortTsConfig] as Linter.Config[]

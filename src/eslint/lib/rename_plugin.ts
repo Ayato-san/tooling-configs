@@ -7,7 +7,13 @@ import type { Linter } from 'eslint'
  * @param {string} oldName - The current name of the plugin to be renamed.
  * @param {string} newName - The new name for the plugin.
  */
-export default function renamePlugin(config: Linter.Config, oldName: string, newName: string) {
+export default function renamePlugin(
+  config: Linter.Config | undefined,
+  oldName: string,
+  newName: string
+) {
+  if (!config) return
+
   // Check if the config has plugins and if the oldName exists in the plugins
   if (config.plugins && config.plugins[oldName]) {
     // Assign the plugin from oldName to newName

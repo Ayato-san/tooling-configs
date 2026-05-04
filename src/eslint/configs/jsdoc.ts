@@ -1,3 +1,4 @@
+import type { Linter } from 'eslint'
 import jsdoc from 'eslint-plugin-jsdoc'
 
 import { GLOB_SRC } from '../globs.js'
@@ -5,8 +6,9 @@ import { hasTypeScript } from '../lib/env.js'
 import removeCircularDeps from '../lib/remove_circular_deps.js'
 
 /** ESLint configuration object for Javascript Documentation's Rules */
-const config = jsdoc.configs['flat/recommended'] // Load the recommended configuration from eslint-plugin-jsdoc
+const config: Linter.Config = jsdoc.configs['flat/recommended'] ?? {} // Load the recommended configuration from eslint-plugin-jsdoc
 removeCircularDeps(config, 'jsdoc') // Remove circular dependencies from the config
+config.plugins = { ...config.plugins, jsdoc } // Register the plugin on this config object for jsdoc/* rules
 config.name = 'Typescript Documentation' // Set the name of the configuration
 config.files = [GLOB_SRC] // Specify the files to which this configuration applies
 

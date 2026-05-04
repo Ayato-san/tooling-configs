@@ -1,4 +1,4 @@
-import { defineConfig, type Config } from 'eslint/config'
+import type { Linter } from 'eslint'
 import { writeFileSync } from 'fs'
 import { argv } from 'node:process'
 
@@ -26,7 +26,7 @@ import { isTsOptions, type TsOptions } from './types.js'
  * @param {Config[]} configs - An array of configuration objects to be included in the ESLint setup.
  * @returns The final ESLint configuration object after merging all provided configurations.
  */
-export function configure(options?: Options, ...configs: Config[]) {
+export function configure(options?: Options, ...configs: Linter.Config[]) {
   // Check if Prettier should be enabled and add its config if so
   if (verifyOptions(options, 'enablePrettier', hasPrettier)) {
     configs.unshift(configPrettier)
@@ -69,15 +69,15 @@ export function configure(options?: Options, ...configs: Config[]) {
   }
 
   // Merge all configurations into a single ESLint configuration object
-  return defineConfig(
+  return [
     configIgnore,
     configUnicorn,
     configJavascript,
     configJsDoc,
     configNode,
     configPerfectionist,
-    ...configs
-  )
+    ...configs,
+  ]
 }
 
 /**

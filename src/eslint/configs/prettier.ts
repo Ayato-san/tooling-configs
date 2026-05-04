@@ -1,9 +1,9 @@
+import type { Linter } from 'eslint'
 import prettierConfig from 'eslint-config-prettier'
 import prettierPlugin from 'eslint-plugin-prettier/recommended'
-import type { Config } from 'eslint/config'
 
 /** ESLint configuration object for Prettier's Rules */
-const config: Config = {
+const config: Linter.Config = {
   name: 'Prettier', // Name of the configuration
   plugins: { ...prettierPlugin.plugins }, // Include plugins from eslint-plugin-prettier
   rules: {

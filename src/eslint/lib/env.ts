@@ -13,6 +13,9 @@ const hasTailwind = isPackageExists('tailwindcss')
 const hasAdonisjs = isPackageExists('@adonisjs/core')
 /** Check if Vue package is installed */
 const hasVue = isPackageExists('vue') || isPackageExists('nuxt') || isPackageExists('vitepress')
+/** Check if Unocss package is installed */
+const hasUnocss =
+  isPackageExists('unocss') || isPackageExists('@unocss/webpack') || isPackageExists('@unocss/nuxt')
 
 // Export the results of the checks
-export { hasAdonisjs, hasGitIgnore, hasPrettier, hasTailwind, hasTypeScript, hasVue }
+export { hasAdonisjs, hasGitIgnore, hasPrettier, hasTailwind, hasTypeScript, hasUnocss, hasVue }

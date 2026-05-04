@@ -13,6 +13,7 @@ import configPrettier from './configs/prettier.js'
 import configTailwind from './configs/tailwindcss.js'
 import configTypescript from './configs/typescript.js'
 import configUnicorn from './configs/unicorn.js'
+import configUnocss from './configs/unocss.js'
 import configYml from './configs/yml.js'
 import { hasAdonisjs, hasPrettier, hasTailwind, hasTypeScript } from './lib/env.js'
 import { isTsOptions, type TsOptions } from './types.js'
@@ -54,6 +55,10 @@ export function configure(options?: Options, ...configs: Linter.Config[]) {
   // Check if Tailwind support should be enabled and add its config if so
   if (verifyOptions(options, 'enableTailwind', hasTailwind)) {
     configs.unshift(configTailwind)
+  }
+  // Check if UnoCSS support should be enabled and add its config if so
+  if (verifyOptions(options, 'enableUnoCss', false)) {
+    configs.unshift(configUnocss)
   }
 
   // Log the enabled features if the eslint cli contains '--features' arg
@@ -110,6 +115,8 @@ interface Options {
   enableAdonis?: boolean
   /** Indicates whether Tailwind CSS support should be enabled */
   enableTailwind?: boolean
+  /** Indicates whether UnoCSS support should be enabled */
+  enableUnoCss?: boolean
 }
 
 /**
